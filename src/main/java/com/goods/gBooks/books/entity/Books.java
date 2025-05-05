@@ -1,4 +1,4 @@
-package main.java.com.goods.gBooks.books.entity;
+package com.goods.gBooks.books.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
