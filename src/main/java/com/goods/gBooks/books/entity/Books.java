@@ -32,11 +32,11 @@ public class Books {
     @Column(length = 100, nullable = false)
     private String category;
 
-    @Column(name = "departure", length = 100, nullable = false)
-    private String departure;
+    @Column(name = "start_area", length = 100, nullable = false)
+    private String startArea;
 
-    @Column(name = "destination", length = 100, nullable = false)
-    private String destination;
+    @Column(name = "arrive_area", length = 100, nullable = false)
+    private String arriveArea;
 
     @Column(name = "receipt_type", length = 100, nullable = false)
     private String receiptType;
@@ -56,6 +56,9 @@ public class Books {
     @Column(columnDefinition = "TEXT")
     private String etc;
 
+    @Column(columnDefinition = "user_id")
+    private String userId;
+
     @CreationTimestamp
     @Column(name = "create_date", nullable = false, updatable = false)
     private LocalDateTime createDate;
@@ -63,4 +66,14 @@ public class Books {
     @UpdateTimestamp
     @Column(name = "update_date", nullable = false)
     private LocalDateTime updateDate;
+
+    @PrePersist
+    protected void onCreate() {
+        createDate = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updateDate = LocalDateTime.now();
+    }
 }

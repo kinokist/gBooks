@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                       "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.goods.gBooks.books.mapper.BooksMapper">
+  <select id="selectBooksByClient" resultType="com.goods.gBooks.books.dto.out.BooksOutDto">
+    SELECT
+    b.id,
+    b.date,
+    b.app,
+    b.sales_type as salesType,
+    b.category,
+    b.start_area as startArea,
+    b.arrive_area as arriveArea,
+    b.receipt_type as receiptType,
+    b.proof_status as proofSstatus,
+    b.account_due as accountDue,
+    b.fare,
+    b.client,
+    b.etc,
+    b.user_id,
+    b.create_date as createDate,
+    b.update_date as updateDate
+    FROM gbooks b
+    <where>
+        <if test="client != null and client != ''">
+            AND b.client = #{client}
+        </if>
+    </where>
+    order by b.date,b.client;
+  </select>
+</mapper>
